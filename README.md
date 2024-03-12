@@ -34,7 +34,7 @@ desired appearance.
 venv/bin/python text2texture.py ~/TripoSR/output/0/mesh.obj 'a chair that looks like an avocado'
 ```
 
-The first time this runs, it will download a text-to-image model (by default,
+The first time this runs, it will download a Stable Diffusion model (by default,
 [Lykon/dreamshaper-8](https://huggingface.co/Lykon/dreamshaper-8)) and a ControlNet model. The image
 model can be configured, say, to a model you've already fetched from Hugging Face.
 
