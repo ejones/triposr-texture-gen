@@ -1,0 +1,4 @@
+/output/
+venv/
+*.sw[op]
+.DS_Store
