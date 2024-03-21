@@ -19,23 +19,26 @@ class TextToObjectImage:
         self,
         device=_DEFAULT_DEVICE,
         model='Lykon/dreamshaper-8',
-        cn_model='lllyasviel/control_v11f1p_sd15_depth',
+        cn_model='lllyasviel/control_v11p_sd15_normalbae',
     ):
         controlnet = ControlNetModel.from_pretrained(cn_model, torch_dtype=torch.float16, variant='fp16')
 
         self.pipe = StableDiffusionControlNetPipeline.from_pretrained(
             model, controlnet=controlnet, torch_dtype=torch.float16, variant='fp16',
+            safety_checker=None,
         )
         self.pipe.scheduler = UniPCMultistepScheduler.from_config(self.pipe.scheduler.config)
         self.pipe = self.pipe.to(device)
 
     def generate(self, desc: str, steps: int, control_image: Image):
         return self.pipe(
-            prompt=f'{desc}, 3D rendering, high quality 4K, ultrarealistic',
-            negative_prompt='shadows, grid, mesh',
+            prompt=f'{desc}, front and back view, 180, reverse, 3D rendering, high quality 4K, flat',
+            negative_prompt='lighting, shadows, grid, dark, mesh',
             num_inference_steps=steps,
             num_images_per_prompt=1,
             image=control_image,
+            width=control_image.width,
+            height=control_image.height,
         ).images[0]
 
 

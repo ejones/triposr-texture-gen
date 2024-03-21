@@ -11,8 +11,6 @@ AI](https://stability.ai/) and [Tripo AI](https://www.tripo3d.ai/), but might wo
 as well. TripoSR outputs more coarse-grained textures in the form of vertex colors, so this is
 helpful for (re)applying fine detail to the models.
 
-Currently, it only paints the front half of the model, but more enhancements are planned.
-
 Installation
 ------------
 
@@ -37,9 +35,6 @@ venv/bin/python text2texture.py ~/TripoSR/output/0/mesh.obj 'a chair that looks 
 The first time this runs, it will download a Stable Diffusion model (by default,
 [Lykon/dreamshaper-8](https://huggingface.co/Lykon/dreamshaper-8)) and a ControlNet model. The image
 model can be configured, say, to a model you've already fetched from Hugging Face.
-
-Currently this only paints the "front" of the model, which is guessed based on the orientation of
-the mesh and should roughly correspond to the original input image.
 
 
 --------
